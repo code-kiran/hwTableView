@@ -10,10 +10,10 @@ import UIKit
 //var array1 = ["sdfsad","sdfasdf"]
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBAction func reloadTable(_ sender: Any) {
         array.removeAll()
         myTableView.reloadData()
+        //myTableView.isEditing = true
     }
     @IBOutlet weak var myTableView: UITableView!
     var array = [String]()
@@ -40,7 +40,7 @@ func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPat
             })
             alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
                 self.array[indexPath.row] = alert.textFields!.first!.text!
-                self.myTableView.reloadRows(at: [indexPath], with: .fade)
+               self.myTableView.reloadRows(at: [indexPath], with: .fade)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: false)
@@ -56,6 +56,7 @@ func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPat
     }
 
     
+
     
     @IBOutlet weak var txtField: UITextField!
     override func viewDidLoad() {
@@ -70,11 +71,21 @@ func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPat
     @IBAction func saveButton(_ sender: Any) {
      aappp()
     }
+    
+    
+    
     func aappp(){
-        array.append(txtField.text!)
-           print(array)
-        myTableView.reloadData()
-        
+        let txt = txtField.text!
+        if txt.isEmpty {
+            let alert = UIAlertController(title: "Sorry", message: "textfield cant be empty", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        else {
+            array.append(txtField.text!)
+            print(array)
+            myTableView.reloadData()
+        }
     }
     
 }
