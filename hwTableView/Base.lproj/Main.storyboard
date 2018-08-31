@@ -47,12 +47,22 @@
                                                 <action selector="saveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="86N-gs-Rf2"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6N-RI-ypL">
+                                            <rect key="frame" x="294" y="71.5" width="72" height="30"/>
+                                            <state key="normal" title="RemoveAll"/>
+                                            <connections>
+                                                <action selector="reloadTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Suq-e7-lag"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.85311294810000005" green="0.93895675150000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="oOz-AD-lSl" firstAttribute="top" secondItem="RWt-CZ-VH1" secondAttribute="top" constant="8" id="9YQ-cE-EfZ"/>
+                                        <constraint firstItem="F6N-RI-ypL" firstAttribute="leading" secondItem="O6m-ul-FKu" secondAttribute="trailing" constant="8" id="Bxe-Za-Bpn"/>
+                                        <constraint firstItem="F6N-RI-ypL" firstAttribute="height" secondItem="O6m-ul-FKu" secondAttribute="height" constant="-13" id="OHI-BZ-xyo"/>
                                         <constraint firstAttribute="bottom" secondItem="O6m-ul-FKu" secondAttribute="bottom" constant="26" id="Rxd-hU-dr4"/>
                                         <constraint firstItem="O6m-ul-FKu" firstAttribute="top" secondItem="oOz-AD-lSl" secondAttribute="bottom" constant="8" id="SNT-3Y-Iqs"/>
+                                        <constraint firstItem="F6N-RI-ypL" firstAttribute="centerY" secondItem="O6m-ul-FKu" secondAttribute="centerY" id="nzc-54-JqE"/>
                                         <constraint firstItem="oOz-AD-lSl" firstAttribute="centerX" secondItem="RWt-CZ-VH1" secondAttribute="centerX" id="qSs-oS-SxK"/>
                                         <constraint firstItem="O6m-ul-FKu" firstAttribute="centerX" secondItem="RWt-CZ-VH1" secondAttribute="centerX" constant="-1" id="wlT-lQ-fnK"/>
                                     </constraints>

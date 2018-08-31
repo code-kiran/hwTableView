@@ -9,6 +9,12 @@
 import UIKit
 //var array1 = ["sdfsad","sdfasdf"]
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBAction func reloadTable(_ sender: Any) {
+        array.removeAll()
+        myTableView.reloadData()
+    }
     @IBOutlet weak var myTableView: UITableView!
     var array = [String]()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,18 +31,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return true
     }
     
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Erase"
+
+func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
+            let alert = UIAlertController(title: "", message: "Edit list item", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.text = self.array[indexPath.row]
+            })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                self.array[indexPath.row] = alert.textFields!.first!.text!
+                self.myTableView.reloadRows(at: [indexPath], with: .fade)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        })
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+            self.array.remove(at: indexPath.row)
+            tableView.reloadData()
+        })
+        editAction.backgroundColor = UIColor.lightGray
+        deleteAction.backgroundColor = UIColor.darkGray
+        return [deleteAction, editAction]
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            array.remove(at: indexPath.row)
-            myTableView.deleteRows(at: [indexPath], with: .right)
-        }
-    }
-    
-    
+
     
     
     @IBOutlet weak var txtField: UITextField!
@@ -46,6 +64,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.myTableView.allowsMultipleSelectionDuringEditing = true
     }
+    
+    
+    
     @IBAction func saveButton(_ sender: Any) {
      aappp()
     }
